@@ -58,14 +58,14 @@ class OC_TemplateLayout extends OC_Template {
 		if (!empty(OC_Util::$core_scripts)) {
 			$this->append( 'jsfiles', OC_Helper::linkToRemoteBase('core.js', false) . $versionParameter);
 		}
-		if (OC_Config::getValue('installed', false) && $renderas!='error') {
-			$this->append( 'jsfiles', OC_Helper::linkToRoute('js_config') . $versionParameter);
-		}
 		foreach($jsfiles as $info) {
 			$root = $info[0];
 			$web = $info[1];
 			$file = $info[2];
 			$this->append( 'jsfiles', $web.'/'.$file . $versionParameter);
+		}
+		if (OC_Config::getValue('installed', false) && $renderas!='error') {
+			$this->append( 'jsfiles', OC_Helper::linkToRoute('js_config') . $versionParameter);
 		}
 
 		// Add the css files
